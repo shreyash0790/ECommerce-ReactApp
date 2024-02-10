@@ -1,12 +1,19 @@
+import { Fragment } from "react"
+import Header from "./components/Layout/Header"
+import Footer from "./components/Layout/Footer"
+import Products from "./components/Products/Products"
+
 
 
 function App() {
 return(
  
-  <div>
-  <p>hi</p>
-  </div>
-  
+  <Fragment>
+  <Header />
+  <Products />
+  <Footer />
+
+  </Fragment>
   
 )
   

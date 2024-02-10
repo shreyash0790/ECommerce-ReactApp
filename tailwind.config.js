@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'protest': ["Protest Revolution"],
+      'protest-g':["Protest Guerrilla"],
+      'protest-r':["Protest Riot"]
+    }
   },
   plugins: [],
 }
