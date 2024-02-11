@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
 import { Fragment} from "react";
-
+import CartContext from "../store/CartContext";
+import { useContext } from "react";
 
 
 const HeaderCart = function (props) {
  
+  const cartCtx=useContext(CartContext)
+
+  const numberOfCartItems=cartCtx.items.reduce((currNumber,item)=>{
+    return currNumber + parseInt(item.Quantity) ;
+  },0)
 
  
 
@@ -29,7 +35,7 @@ const HeaderCart = function (props) {
       </svg>
       <span className=" font-protest-r text-xl">Your Cart</span>
       <span className=" text-slate-950 bg-white px-4 py-1 rounded-full ml-4 font-bold">
-       0
+      {numberOfCartItems}
       </span>
     </button>
      

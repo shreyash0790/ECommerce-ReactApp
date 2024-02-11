@@ -5,6 +5,7 @@ import Header from "./components/Layout/Header"
 import Footer from "./components/Layout/Footer"
 import Products from "./components/Products/Products"
 import {  useState } from "react";
+import CartProvider from "./components/store/CartProvider";
 
 
 function App() {
@@ -18,12 +19,13 @@ function App() {
   };
 
   return (
-   <div>
+   <CartProvider>
    {cartIsShown && <Cart onClose={hideCarthandler} />}
    <Header onShow={showCarthandler} />
    <Products />
   <Footer />
-   </div>
+   </CartProvider>
+  
      
    
   );

@@ -1,14 +1,12 @@
 import { Fragment } from "react"
-import CasualCategory from "./ProductCategories/SportsCategory"
-import SportsCategory from "./ProductCategories/CasualCategory"
+import ProductItems from "./ProductItems/ProductItems"
 
 
 const Products= function(){
 
     return(
         <Fragment>
-       <CasualCategory />
-       <SportsCategory />
+      <ProductItems />
         </Fragment>
     )
 }
