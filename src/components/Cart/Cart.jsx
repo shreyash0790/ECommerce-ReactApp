@@ -1,30 +1,37 @@
 import Modal from "../UI/Modal";
-import { Fragment, useContext } from "react";
-import CartContext from "../../store/CartContext";
+
+
+
+import aCasual from '../../assets/ShoeImg/aCasual.png'
+import nCasual from '../../assets/ShoeImg/nCasual.jpg'
+
+
+
+
+const cartItems=[
+  {
+      id: 1,
+      name: "Nike-Sneakers",
+      description: "For Casual wear",
+      price: "₹3300",
+      imageSrc: nCasual,
+    },
+    {
+      id: 2,
+      name: "Adidas-Superstar",
+      description: "To rock the party",
+      price: "₹6000",
+      imageSrc: aCasual,
+    },
+    
+]
 
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
-  const cartItems = cartCtx.items;
-  
-
-  const removeItemHandler = (items) => {
-   
-    cartCtx.removeItems(items.id);
-
-   
-
-  };
-
-  const totalPrice = cartItems.reduce((curr, item) => {
-    let totalprice = parseInt(
-      item.price.replace(/[^0-9]+/g, "") * item.Quantity
-    );
-    return curr + totalprice;
-  }, 0);
-
+ 
+ 
   return (
-    <Fragment>
+   
       <Modal OnClose={props.OnClose}>
         <ul className="flex flex-col divide-y divide-gray-200">
           {cartItems.map((items) => (
@@ -35,11 +42,17 @@ const Cart = (props) => {
               <div className="flex w-full space-x-2 sm:space-x-4">
                 <div className="flex w-full flex-col justify-between pb-4">
                   <div className="flex w-full justify-between space-x-2 pb-2">
+                  
                     <div className="space-y-1">
-                      <h3 className="text-2xl font-bold text-black leading-snug sm:pr-8">
-                        {items.title}
+                    <img
+            className="h-10 w-10 flex-shrink-0 rounded-md  outline-none dark:border-black sm:h-20 sm:w-20"
+            src={items.imageSrc}
+            alt={items.name}
+          />
+                      <h3 className=" font-protest-r text-2xl font-bold text-black leading-snug sm:pr-8">
+                        {items.name}
                       </h3>
-                      <p className="text-sm text-black">x{items.Quantity}</p>
+                      <p className="text-sm text-black">x1</p>
                     </div>
                     <div className="text-right">
                       <p className="text-lg font-semibold text-black ">
@@ -48,7 +61,7 @@ const Cart = (props) => {
                       <button
                         type="button"
                         className="rounded-full border bg-blue-900 mt-3 px-2 py-1 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                        onClick={() => removeItemHandler(items)}
+                        
                       >
                         Delete
                       </button>
@@ -63,7 +76,7 @@ const Cart = (props) => {
         <div className="space-y-1 text-right text-black pb-5">
           <p>
             Total Price:
-            <span className="font-semibold"> ₹{totalPrice}</span>
+            <span className="font-semibold"> ₹0</span>
           </p>
         </div>
         <div className="flex justify-end space-x-4">
@@ -82,7 +95,7 @@ const Cart = (props) => {
           </button>
         </div>
       </Modal>
-    </Fragment>
+  
   );
 };
 export default Cart;

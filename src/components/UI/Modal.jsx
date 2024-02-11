@@ -1,21 +1,17 @@
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
-const Backdrop = (props) => {
-  return (
-    <div
-      className="fixed top-0 left-0 w-full h-screen z-2 bg-transparent bg-gray-700 bg-opacity-30  "
-      onClick={props.OnClose}
-    />
-  );
-};
+
+
+
 
 const ModalOverlay = (props) => {
   return (
-    <div className=" flex flex-col items-center  justify-center ">
-      <div className=" fixed my-20 top-40  ml-40 w-2/3 bg-white p-4 rounded-lg shadow-md z-30 animate-slide-down ">
+    <div className="  fixed inset-0 bg-opacity-25 bg-black flex flex-col items-center  justify-center backdrop-blur-sm bg-transparent ">
+      <div className="   my-44 top-40  mr-24  ml-40 w-96 bg-white p-8 rounded-lg shadow-md z-30 animate-slide-down  overflow-auto">
         {props.children}
       </div>
-    </div>
+      </div>
+   
   );
 };
 
@@ -23,10 +19,7 @@ const portalElement = document.getElementById("overlays");
 const Modal = (props) => {
   return (
     <Fragment>
-      {ReactDOM.createPortal(
-        <Backdrop OnClose={props.OnClose} />,
-        portalElement
-      )}
+   
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement

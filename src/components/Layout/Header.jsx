@@ -2,10 +2,10 @@ import { Fragment } from 'react'
 import HeaderCart from '../Cart/HeaderCart'
 
 
-const Header= function(){
+const Header= function(props){
     return(
         <Fragment>
-      <div className="fixed w-full h-30 bg-slate-700 ">
+      <div className=" fixed w-full h-30 bg-slate-700 ">
         <div className="mx-auto flex w-full h-30 items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
           <div className="inline-flex items-center space-x-2">
             <span>
@@ -22,7 +22,7 @@ const Header= function(){
               <li>
                 <a
                   href="#"
-                  className="text-xl font-bold text-slate-900 hover:text-white"
+                  className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
                 >
                   Home
                 </a>
@@ -31,7 +31,7 @@ const Header= function(){
               <li>
                 <a
                   href="#"
-                  className="text-xl font-bold text-slate-900 hover:text-white"
+                  className="font-protest-r  text-xl font-bold text-slate-900 hover:text-white"
                 >
                   About
                 </a>
@@ -39,7 +39,7 @@ const Header= function(){
               <li>
                 <a
                   href="#"
-                  className="text-xl font-bold text-slate-900 hover:text-white"
+                  className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
                 >
                   Store
                 </a>
@@ -47,7 +47,7 @@ const Header= function(){
               <li>
                 <a
                   href="#"
-                  className="text-xl font-bold text-slate-900 hover:text-white"
+                  className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
                 >
                   Contact
                 </a>
@@ -64,7 +64,7 @@ const Header= function(){
 </svg>
 
 </div>
-          <HeaderCart  />
+          <HeaderCart onShowCart={props.onShow}  />
         </div>
       </div>
     </Fragment>
