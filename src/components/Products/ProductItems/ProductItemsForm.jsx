@@ -1,4 +1,4 @@
-import CartContext from "../../store/CartContext";
+import CartContext from "../../Context/CartContext";
 import { useContext } from "react";
 import ProductInputForm from "../../UI/ProductInputForm";
 

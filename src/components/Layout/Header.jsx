@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import HeaderCart from '../Cart/HeaderCart'
+import { Link } from 'react-router-dom'
 
 
 const Header= function(props){
@@ -20,29 +21,27 @@ const Header= function(props){
             <div className="hidden grow items-start lg:flex">
             <ul className="ml-24 inline-flex space-x-11 mr-44">
               <li>
-                <a
-                  href="#"
+                <Link to={'/home'}
                   className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               
               <li>
-                <a
-                  href="#"
+                <Link
+                 to={'/about'}
                   className="font-protest-r  text-xl font-bold text-slate-900 hover:text-white"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link to={'/store'}
                   className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
                 >
                   Store
-                </a>
+                </Link>
               </li>
               <li>
                 <a

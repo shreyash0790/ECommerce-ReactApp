@@ -2,7 +2,7 @@
 
 const Footer= function(){
     return(
-        <footer className=" w-full py-8 bottom-0">
+        <footer className=" realtive w-full py-8 bottom-0 ">
         <div className="max-w-screen-xl px-4 mx-auto">
             <ul className="flex flex-wrap justify-between max-w-screen-md mx-auto text-lg font-light">
                 <li className="my-2">

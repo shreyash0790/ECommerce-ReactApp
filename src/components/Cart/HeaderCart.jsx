@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Fragment} from "react";
-import CartContext from "../store/CartContext";
+import CartContext from "../Context/CartContext";
 import { useContext } from "react";
 
 
