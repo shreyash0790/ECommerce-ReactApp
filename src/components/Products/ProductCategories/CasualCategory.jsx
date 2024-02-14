@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import ProductItemsForm from "../ProductItems/ProductItemsForm";
 
 const CasualCategory = function (props) {
@@ -12,9 +13,12 @@ const CasualCategory = function (props) {
         className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
       />
       <div className="p-4">
-        <h1 className=" font-protest-r inline-flex props-center text-xl font-bold shadow-md  text-black">
+      <NavLink to={"/products/p1"}>
+      <h1 className=" font-protest-r inline-flex props-center text-xl font-bold shadow-md  text-black">
           {props.name}
         </h1>
+      </NavLink>
+        
         <p className="mt-3 text-sm font-semibold text-slate-950">
           {props.description}
         </p>

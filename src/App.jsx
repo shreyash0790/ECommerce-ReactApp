@@ -9,6 +9,8 @@ import About from "./pages/About";
 import HomePage from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 
+import ProductDetails from "./pages/ProductDetails";
+
 
 
 
@@ -34,6 +36,10 @@ children:[
   {
     path:'/contactUs',
     element:<ContactUs />
+  },
+  {
+    path:'/products/:productId',
+    element:<ProductDetails />
   }
 ]
 
