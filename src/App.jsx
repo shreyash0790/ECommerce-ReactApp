@@ -7,6 +7,7 @@ import CartProvider from "./components/Context/CartProvider";
 import Store from "./pages/Store";
 import About from "./pages/About";
 import HomePage from "./pages/Home";
+import ContactUs from "./pages/ContactUs";
 
 
 
@@ -29,6 +30,10 @@ children:[
   {
     path:'/home',
     element:<HomePage />
+  },
+  {
+    path:'/contactUs',
+    element:<ContactUs />
   }
 ]
 

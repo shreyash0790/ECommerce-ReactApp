@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import HeaderCart from '../Cart/HeaderCart'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 const Header= function(props){
@@ -21,35 +21,36 @@ const Header= function(props){
             <div className="hidden grow items-start lg:flex">
             <ul className="ml-24 inline-flex space-x-11 mr-44">
               <li>
-                <Link to={'/home'}
-                  className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
+                <NavLink to={'/home'}
+               
+                  className={({isActive})=> isActive ? " font-protest-r text-xl font-bold  text-white hover:text-slate-900" : " font-protest-r text-xl font-bold text-slate-900 hover:text-white "}
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               
               <li>
-                <Link
+                <NavLink
                  to={'/about'}
-                  className="font-protest-r  text-xl font-bold text-slate-900 hover:text-white"
+                 className={({isActive})=> isActive ? " font-protest-r text-xl font-bold text-white hover:text-slate-900 " : " font-protest-r text-xl font-bold text-slate-900 hover:text-white " }
                 >
                   About
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to={'/store'}
-                  className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
+                <NavLink to={'/store'}
+                  className={({isActive})=> isActive ? " font-protest-r text-xl font-bold text-white hover:text-slate-900 " : " font-protest-r text-xl font-bold text-slate-900 hover:text-white " }
                 >
                   Store
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className=" font-protest-r text-xl font-bold text-slate-900 hover:text-white"
+                <NavLink
+                to={'/contactUs'}
+                className={({isActive})=> isActive ? " font-protest-r text-xl font-bold text-white hover:text-slate-900 " : " font-protest-r text-xl font-bold text-slate-900 hover:text-white " }
                 >
                   Contact
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
