@@ -13,7 +13,7 @@ const CasualCategory = function (props) {
         className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
       />
       <div className="p-4">
-      <NavLink to={"/products/p1"}>
+      <NavLink to={"/store/p1"}>
       <h1 className=" font-protest-r inline-flex props-center text-xl font-bold shadow-md  text-black">
           {props.name}
         </h1>
