@@ -11,6 +11,8 @@ import ProductDetails from "./pages/ProductDetails";
 import Header from "./components/Layout/Header";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/Layout/Footer";
+import ErrorPage from "./pages/ErrorPage";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -28,11 +30,13 @@ function App() {
       <Header onShow={showCarthandler} />
       <main>
         <Routes>
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/store/:productId" element={<ProductDetails />} />
+        <Route path="*" element={<ErrorPage />} />
             
         </Routes>
       </main>
