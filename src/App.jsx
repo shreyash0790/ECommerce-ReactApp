@@ -13,6 +13,7 @@ import Cart from "./components/Cart/Cart";
 import Footer from "./components/Layout/Footer";
 import ErrorPage from "./pages/ErrorPage";
 import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -31,6 +32,7 @@ function App() {
       <main>
         <Routes>
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/" element={<Login />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
