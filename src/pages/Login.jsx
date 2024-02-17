@@ -1,11 +1,15 @@
 
 
-import { useRef, useState } from "react";
-import { NavLink,  } from "react-router-dom";
+import { useContext, useRef, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import AuthContext from "../components/Context/AuthContext";
 
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
 
 const Login = function () {
+
+const authCtx=useContext(AuthContext)
+const navigate = useNavigate()
 
   
   const enteredEmailRef = useRef();
@@ -39,16 +43,21 @@ const Login = function () {
       );
       if(response.ok){
       setLoading(false)
+      const data=await response.json();
+       authCtx.login(data.idToken);
+       navigate('/home');
       }
       else{
-       return response.json().then((data)=>{
-        let errMessage="Authentication failed ";
-        if(data && data.error && data.error.message){
-          errMessage=data.error.message
+ 
+        const data = await response.json();
+        let errMessage = "Authentication failed";
+        
+        if (data && data.error && data.error.message) {
+          errMessage = data.error.message;
         }
-        alert(errMessage)
-        setLoading(false)
-       })
+        
+        alert(errMessage);
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
@@ -217,7 +226,7 @@ const Login = function () {
                     type="submit"
                     className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                   >
-                   {!isLoading && <p>Get Started</p> } 
+                   {!isLoading && <p>Login</p> } 
                    {isLoading && <p>Loading...</p>}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

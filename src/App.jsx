@@ -14,6 +14,7 @@ import Footer from "./components/Layout/Footer";
 import ErrorPage from "./pages/ErrorPage";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -33,6 +34,7 @@ function App() {
         <Routes>
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/" element={<Login />} />
+        <Route path="/profile" element={<UserProfile />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
