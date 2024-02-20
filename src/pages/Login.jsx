@@ -44,8 +44,9 @@ const navigate = useNavigate()
       if(response.ok){
       setLoading(false)
       const data=await response.json();
-       authCtx.login(data.idToken);
+       authCtx.login(data.idToken,data.email);
        navigate('/home');
+       authCtx.emailHandler(data.email)
       }
       else{
  

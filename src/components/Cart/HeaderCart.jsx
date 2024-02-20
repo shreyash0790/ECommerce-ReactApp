@@ -1,14 +1,37 @@
 /* eslint-disable react/prop-types */
 import { Fragment} from "react";
 import CartContext from "../Context/CartContext";
-import { useContext } from "react";
+import { useContext , useEffect ,useState } from "react";
 
 
 const HeaderCart = function (props) {
+
+  const userEmail = localStorage.getItem("email");
  
   const cartCtx=useContext(CartContext)
+  const [fetchedCartItems, setFetchedCartItems] = useState([]);
+  const cartItems = cartCtx.items;
 
-  const numberOfCartItems=cartCtx.items.reduce((currNumber,item)=>{
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = `https://react-movies-3a05d-default-rtdb.firebaseio.com/cart.json?orderBy="Email"&equalTo="${userEmail}"`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        const data = await response.json();
+        const items = Object.values(data);
+        setFetchedCartItems(items);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [cartItems, userEmail]);
+
+  const numberOfCartItems=fetchedCartItems.reduce((currNumber,item)=>{
     return currNumber + parseInt(item.Quantity) ;
   },0)
 

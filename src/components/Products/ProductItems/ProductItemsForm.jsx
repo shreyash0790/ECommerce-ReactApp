@@ -1,16 +1,18 @@
 import CartContext from "../../Context/CartContext";
 import { useContext } from "react";
 import ProductInputForm from "../../UI/ProductInputForm";
+import AuthContext from "../../Context/AuthContext";
 
 
 
 const ProductItemsForm=function(props){
     const cartCnxt = useContext(CartContext);
+    const authCxt=useContext(AuthContext)
 
     const addItemToCart = (event) => {
       event.preventDefault();
       const quantity = document.getElementById("amount_" + props.id).value;
-      cartCnxt.addItems({ ...props.items, Quantity: quantity });
+      cartCnxt.addItems({ ...props.items, Quantity: quantity, Email:authCxt.email });
     };
   
     return (

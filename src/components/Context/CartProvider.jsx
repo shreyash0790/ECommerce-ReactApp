@@ -4,8 +4,22 @@ import CartContext from "./CartContext";
 const CartProvider = (props) => {
   const [items, updatedItems] = useState([]);
 
-  const addItemsHandler = (item) => {
-    updatedItems((prevItem) => [...prevItem, item]);
+  const addItemsHandler = async (item) => {
+    try {
+      updatedItems((prevItem) => [...prevItem, item]);
+
+      await fetch(
+        "https://react-movies-3a05d-default-rtdb.firebaseio.com/cart.json",
+        {
+          method: "POST",
+          body: JSON.stringify(item),
+        }
+      );
+
+
+    } catch (err) {
+      console.log(err);
+    }
   };
   const removeItemsHandler = (id) => {
     updatedItems((prevItems) => prevItems.filter((item) => item.id !== id));

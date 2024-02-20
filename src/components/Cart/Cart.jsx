@@ -1,13 +1,50 @@
 import Modal from "../UI/Modal";
-import { useContext } from "react";
+import { useContext, useEffect ,useState} from "react";
 import CartContext from "../Context/CartContext";
 
 const Cart = (props) => {
+  const userEmail = localStorage.getItem("email");
   const cartCtx = useContext(CartContext);
+  const [fetchedCartItems, setFetchedCartItems] = useState([]);
+  
   const cartItems = cartCtx.items;
-  console.log(cartItems)
 
-  const removeItemHandler = (ItemId) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = `https://react-movies-3a05d-default-rtdb.firebaseio.com/cart.json?orderBy="Email"&equalTo="${userEmail}"`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        const data = await response.json();
+        const items = Object.values(data);
+        setFetchedCartItems(items);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [cartItems, userEmail]);
+
+  const removeItemHandler = async (ItemId) => {  
+   const item= fetchedCartItems.filter((item) => item.id === ItemId)[0]
+console.log(item)
+    // try {
+
+    //   // Delete item from Firebase Realtime Database
+    //   const deleteUrl = `https://react-movies-3a05d-default-rtdb.firebaseio.com/cart.json?orderBy="id"&equalTo=${item.id}`;
+    //   const response = await fetch(deleteUrl, {
+    //     method: 'DELETE'
+    //   });
+    //   if (!response.ok) {
+    //     const data = await response.json();
+    //     console.log(data)
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
     cartCtx.removeItems(ItemId);
   };
 
@@ -21,7 +58,7 @@ const Cart = (props) => {
   return (
     <Modal OnClose={props.OnClose}>
       <ul className="flex flex-col divide-y divide-gray-200">
-        {cartItems.map((items) => (
+        {fetchedCartItems.map((items) => (
           <li
             key={items.id}
             className="flex flex-col py-6 sm:flex-row sm:justify-between"
@@ -47,7 +84,7 @@ const Cart = (props) => {
                     <button
                       type="button"
                       className="rounded-full border bg-blue-900 mt-3 px-2 py-1 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                      onClick={()=>removeItemHandler(items.id)}
+                      onClick={() => removeItemHandler(items.id)}
                     >
                       Delete
                     </button>
