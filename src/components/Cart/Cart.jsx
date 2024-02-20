@@ -1,12 +1,12 @@
 import Modal from "../UI/Modal";
-import { useContext, useEffect ,useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import CartContext from "../Context/CartContext";
 
 const Cart = (props) => {
   const userEmail = localStorage.getItem("email");
   const cartCtx = useContext(CartContext);
   const [fetchedCartItems, setFetchedCartItems] = useState([]);
-  
+
   const cartItems = cartCtx.items;
 
   useEffect(() => {
@@ -18,8 +18,20 @@ const Cart = (props) => {
           throw new Error("Something went wrong");
         }
         const data = await response.json();
-        const items = Object.values(data);
-        setFetchedCartItems(items);
+
+        const loadedItems = [];
+
+        for (const key in data) {
+          loadedItems.push({
+            id: key,
+            name: data[key].name,
+            price: data[key].price,
+            imageSrc: data[key].imageSrc,
+            Quantity: data[key].Quantity,
+          });
+        }
+        setFetchedCartItems(loadedItems);
+
       } catch (error) {
         console.log(error);
       }
@@ -28,27 +40,27 @@ const Cart = (props) => {
     fetchData();
   }, [cartItems, userEmail]);
 
-  const removeItemHandler = async (ItemId) => {  
-   const item= fetchedCartItems.filter((item) => item.id === ItemId)[0]
-console.log(item)
-    // try {
+  const removeItemHandler = async (ItemId) => {
+    const item = fetchedCartItems.filter((item)=> item.id === ItemId)[0];
+   
+    try {
 
-    //   // Delete item from Firebase Realtime Database
-    //   const deleteUrl = `https://react-movies-3a05d-default-rtdb.firebaseio.com/cart.json?orderBy="id"&equalTo=${item.id}`;
-    //   const response = await fetch(deleteUrl, {
-    //     method: 'DELETE'
-    //   });
-    //   if (!response.ok) {
-    //     const data = await response.json();
-    //     console.log(data)
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
+      // Delete item from Firebase Realtime Database
+      const deleteUrl = `https://react-movies-3a05d-default-rtdb.firebaseio.com/cart/${item.id}.json`;
+      const response = await fetch(deleteUrl, {
+        method: 'DELETE'
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        console.log(data)
+      }
+    } catch (error) {
+      console.error(error);
+    }
     cartCtx.removeItems(ItemId);
   };
 
-  const totalPrice = cartItems.reduce((curr, item) => {
+  const totalPrice = fetchedCartItems.reduce((curr, item) => {
     let totalprice = parseInt(
       item.price.replace(/[^0-9]+/g, "") * item.Quantity
     );
